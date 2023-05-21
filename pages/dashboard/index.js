@@ -4,7 +4,7 @@ function Dashboard() {
   return <div>Dashboard Page</div>;
 }
 
-Dashboard.getLayout = function getLayout({ page }) {
+Dashboard.getLayout = function (page) {
   return <Layout>{page}</Layout>;
 };
 
