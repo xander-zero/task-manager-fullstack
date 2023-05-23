@@ -1,33 +1,22 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Button, Form, Input } from "antd";
+import { signIn } from "next-auth/react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { useMutation } from "@tanstack/react-query";
-
-import { queryLogin } from "src/service/auth";
 
 export function LoginForm() {
   const router = useRouter();
 
-  const {
-    mutate: onLogin,
-    isLoading,
-    data: userInfo,
-  } = useMutation(queryLogin());
+  const onFinish = async (values) => {
+    const { email, password } = values;
 
-  const onFinish = (values) => {
-    const data = { data: values };
-
-    onLogin(data, {
-      onSuccess: (userInfo) => {
-        const user = userInfo.data;
-        if (user?.isAdmin) {
-          router.push("/panel");
-        } else {
-          router.push("/");
-        }
-      },
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
     });
+
+    if (!res.error) router.push("/dashboard");
   };
 
   return (
