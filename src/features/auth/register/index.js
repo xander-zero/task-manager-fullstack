@@ -23,67 +23,44 @@ export function RegisterForm() {
       className="w-[100%]"
       initialValues={{ remember: true }}
       onFinish={onFinish}
+      layout="vertical"
     >
       <Form.Item
-        name="firstName"
+        label="Full Name"
+        name="fullName"
         rules={[
           {
             required: true,
-            message: "Please input your first name!",
+            message: "Please input your full name!",
           },
         ]}
       >
-        <Input placeholder="First Name" />
+        <Input placeholder="Full Name" />
       </Form.Item>
       <Form.Item
-        name="lastName"
-        rules={[
-          {
-            required: true,
-            message: "Please input your last name!",
-          },
-        ]}
-      >
-        <Input placeholder="Last Name" />
-      </Form.Item>
-      <Form.Item
-        name="phoneNumber"
-        rules={[
-          {
-            required: true,
-            message: "Please input your phone number!",
-          },
-        ]}
-      >
-        <Input placeholder="Phone Number" />
-      </Form.Item>
-      <Form.Item
+        label="Email"
         name="email"
         rules={[
           {
             required: true,
             message: "Please input your email!",
           },
-          {
-            type: "email",
-            message: "Email is not valid!",
-          },
         ]}
       >
-        <Input prefix={<MailOutlined />} placeholder="email" />
+        <Input placeholder="Email" />
       </Form.Item>
       <Form.Item
+        label="Password"
         name="password"
         rules={[
           {
             required: true,
-            message: "Please input your Password!",
+            message: "Please input your password!",
           },
         ]}
       >
-        <Input.Password prefix={<LockOutlined />} placeholder="password" />
+        <Input placeholder="Password" />
       </Form.Item>
-
       <Form.Item className="mb-0 ">
         <div className="my-1 flex items-center justify-between">
           <Button htmlType="submit" loading={isLoading}>

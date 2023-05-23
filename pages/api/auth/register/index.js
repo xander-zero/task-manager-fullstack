@@ -1,6 +1,6 @@
 import connectDB from "src/utils/connectDB";
 import { hashPassword } from "src/utils/auth";
-import User from "models/User.js";
+import User from "../../../../models/User";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return;
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     const data = req.body.data;
-    if (!data.firstName || !data.lastName || !data.email)
+    if (!data.fullName || !data.email || !data.password)
       return res.status(400).json({ status: "faild", message: "Invalid Data" });
 
     const exisitingUser = await User.findOne({ email: data.email });

@@ -34,10 +34,12 @@ export function LoginForm() {
     <Form
       name="login"
       className="w-[100%]"
+      layout="vertical"
       initialValues={{ remember: true }}
       onFinish={onFinish}
     >
       <Form.Item
+        label="Email"
         name="email"
         rules={[
           {
@@ -53,6 +55,7 @@ export function LoginForm() {
         <Input prefix={<MailOutlined />} placeholder="admin@gmail.com" />
       </Form.Item>
       <Form.Item
+        label="Password"
         name="password"
         rules={[
           {
