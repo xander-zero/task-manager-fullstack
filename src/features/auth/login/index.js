@@ -3,11 +3,15 @@ import { useRouter } from "next/router";
 import { Button, Form, Input } from "antd";
 import { signIn } from "next-auth/react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 export function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const onFinish = async (values) => {
+    setIsLoading(true);
     const { email, password } = values;
 
     const res = await signIn("credentials", {
@@ -15,7 +19,7 @@ export function LoginForm() {
       password,
       redirect: false,
     });
-
+    setIsLoading(false);
     if (!res.error) router.push("/dashboard");
   };
 
