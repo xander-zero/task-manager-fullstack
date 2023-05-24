@@ -1,4 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
+import { SessionProvider } from "next-auth/react";
 import { ConfigProvider } from "antd";
 import "antd/dist/antd.css";
 import "../styles/globals.css";
@@ -10,9 +11,11 @@ function MyApp({ Component, pageProps }) {
 
   return getLayout(
     <ConfigProvider csp={{ nonce: "123456" }}>
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-      </QueryClientProvider>
+      <SessionProvider session={pageProps.session}>
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </SessionProvider>
     </ConfigProvider>
   );
 }

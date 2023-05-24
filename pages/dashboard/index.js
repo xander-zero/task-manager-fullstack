@@ -1,4 +1,4 @@
-import { Layout } from "src/layout";
+import { Layout } from "src/layout/Dashboard";
 
 function Dashboard() {
   return <div>Dashboard Page</div>;
