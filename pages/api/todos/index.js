@@ -1,5 +1,6 @@
 import { getSession } from "next-auth/react";
 import connectDB from "src/utils/connectDB";
+import { sortTodos } from "src/utils/sortTodos";
 
 import User from "../../../models/User";
 
@@ -36,6 +37,10 @@ async function handler(req, res) {
     user.save();
 
     res.status(201).json({ status: "success", message: "Todo created" });
+  } else if (req.method === "GET") {
+    const sortedData = sortTodos(user.todos);
+
+    res.status(200).json({ status: "success", data: sortedData });
   }
 }
 
